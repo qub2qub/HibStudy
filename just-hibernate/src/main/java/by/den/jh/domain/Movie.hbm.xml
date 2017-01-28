@@ -6,7 +6,7 @@
 
     <class name="by.den.jh.domain.Movie" table="MOVIES">
         <id name="id" column="ID">
-            <generator class="assigned"/>
+            <generator class="increment"/>
         </id>
         <property name="title" column="TITLE"/>
         <property name="director" column="DIRECTOR"/>

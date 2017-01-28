@@ -6,6 +6,7 @@ package by.den.jh.advanced.inheritance.s2.ann;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -20,11 +21,11 @@ public class InheritanceStrategyTwoTest {
 
     private void init() {
         Configuration config = new Configuration()
-                .configure("advanced/inheritance/s2/hibernate.cfg.ann.xml")
+                .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
                 .addAnnotatedClass(Executive.class);
         
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 

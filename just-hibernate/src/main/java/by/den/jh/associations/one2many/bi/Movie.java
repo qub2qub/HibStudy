@@ -14,6 +14,9 @@ public class Movie {
         setTitle(title);
     }
 
+    public Movie() {
+    }
+
     public void setId(int id) {
         this.id = id;
     }

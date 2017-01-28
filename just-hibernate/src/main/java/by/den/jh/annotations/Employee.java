@@ -23,7 +23,6 @@ public class Employee {
 //    @SequenceGenerator(name = "empSeqGen", sequenceName = "EMP_SEQ_GEN")
     @GeneratedValue (strategy= GenerationType.TABLE, generator="empTableGen")
     @TableGenerator(name = "empTableGen", table = "EMP_ID_TABLE")
-
     private int empoyeeId =0;
 
     

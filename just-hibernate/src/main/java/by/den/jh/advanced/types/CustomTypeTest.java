@@ -5,6 +5,7 @@
 package by.den.jh.advanced.types;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -22,7 +23,7 @@ public class CustomTypeTest {
 //        config.addAnnotatedClass(TravelReview.class);
         config.registerTypeOverride(new PhoneNumberType());
         
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
 
     }

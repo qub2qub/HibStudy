@@ -30,8 +30,11 @@ public class Showroom {
 
     private String manager = null;
     private String location = null;
+
+    //cars collection will have its own table with a foreign key
+    // referring to the showroom table’s primary key (SHOWROOM_ID)
     @OneToMany
-    @JoinColumn(name="SHOWROOM_ID")
+    @JoinColumn(name="CAR_IN_ROOM_FK") // доп колонка в таблице cars, содержащая showroom_id
     @Cascade(CascadeType.ALL)
     private List<Car> cars = null;
 

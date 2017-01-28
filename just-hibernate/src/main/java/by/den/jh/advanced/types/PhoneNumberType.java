@@ -33,7 +33,6 @@ public class PhoneNumberType implements BasicType {
             IntegerType.INSTANCE.sqlType(),
             IntegerType.INSTANCE.sqlType(),
             StringType.INSTANCE.sqlType()
-            
         };
     }
 

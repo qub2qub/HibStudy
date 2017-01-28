@@ -5,36 +5,29 @@
 package by.den.jh.associations.one2one.ann;
 
 import by.den.jh.associations.one2one.Engine;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 /**
  *
  * @author mkonda
  */
 @Entity
-@Table(name="CAR_ONE2ONE_ANN")
-public class Car {
+@Table(name="CAR_ONE2ONE_ANN_UNI")
+public class CarUni {
     @Id
     @Column(name="CAR_ID")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name = null;
-    
+
     private String color = null;
-    
+
     @OneToOne (cascade= CascadeType.ALL)
     @JoinColumn(name="ENGINE_ID")
-    private Engine engine = null;
+    private EngineUni engine = null;
 
-    public Car(){
+    public CarUni(){
         
     }
     public String getName() {
@@ -61,11 +54,11 @@ public class Car {
         this.color = color;
     }
 
-    public Engine getEngine() {
+    public EngineUni getEngine() {
         return engine;
     }
 
-    public void setEngine(Engine engine) {
+    public void setEngine(EngineUni engine) {
         this.engine = engine;
     }
     

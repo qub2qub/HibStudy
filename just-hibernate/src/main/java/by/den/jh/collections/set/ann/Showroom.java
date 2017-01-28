@@ -32,9 +32,9 @@ public class Showroom {
     private String manager = null;
     private String location = null;
     @OneToMany
-    @JoinTable
-    (name="SHOWROOM_CAR_SET_ANN_JOINTABLE",
-     joinColumns = @JoinColumn(name="SHOWROOM_ID")
+    @JoinTable (
+            name="SHOWROOM_CAR_SET_ANN_JOINTABLE",
+            joinColumns = @JoinColumn(name="CAR_IN_ROOM_FK") // имя колонки FK, в которой будут ид шоурума
      )
     @Cascade(CascadeType.ALL)
     private Set<Car> cars = null;

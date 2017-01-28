@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.madhusudhan.jh.associations.one2one">
+<hibernate-mapping package="by.den.jh.associations.one2one">
     <class name="by.den.jh.associations.one2one.Engine" table="ENGINE">
     <id column="CAR_ID" name="id">
+        <!-- дополнительно указывается FK, которые будет брать id из кар -->
       <generator class="foreign">
         <param name="property">car</param>
       </generator>
     </id>
-    <one-to-one class="by.den.jh.associations.one2one.Car" constrained="true" name="car"/>
+    <one-to-one name="car" class="by.den.jh.associations.one2one.Car" constrained="true" />
     <property column="SIZE" name="size"/>
     <property column="MAKE" name="make"/>
     <property column="MODEL" name="model"/>

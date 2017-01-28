@@ -19,7 +19,10 @@ public class Student {
     public Student(String name){
         setName(name);
     }
-    
+
+    public Student() {
+    }
+
     public int getId() {
         return id;
     }

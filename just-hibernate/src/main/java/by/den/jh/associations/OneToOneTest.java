@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -25,13 +26,13 @@ public class OneToOneTest {
 
     private void initV1() {
         Configuration config = new Configuration().configure("associations/one2one/v1/hibernate.cfg.xml");
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factoryV1 = config.buildSessionFactory(registry);
     }
 
     private void initV2() {
         Configuration config = new Configuration().configure("associations/one2one/v2/hibernate.cfg.xml");
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factoryV2 = config.buildSessionFactory(registry);
     }
 

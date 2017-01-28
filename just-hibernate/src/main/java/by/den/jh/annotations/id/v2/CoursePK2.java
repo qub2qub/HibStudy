@@ -4,12 +4,14 @@
  */
 package by.den.jh.annotations.id.v2;
 
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
  *
  * @author mkonda
  */
+//@Embeddable // С ЭТОЙ аннатацицей нет ошибки
 public class CoursePK2 implements Serializable {
 
     private String tutor = null;

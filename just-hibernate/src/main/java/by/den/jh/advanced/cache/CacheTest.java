@@ -6,6 +6,7 @@ package by.den.jh.advanced.cache;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -21,7 +22,7 @@ public class CacheTest {
     private void init() {
         Configuration config = new Configuration().configure("advanced/cache/hibernate.cfg.xml");
 //        config.addAnnotatedClass(Person.class);
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 

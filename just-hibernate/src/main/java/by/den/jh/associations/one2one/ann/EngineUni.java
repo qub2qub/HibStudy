@@ -4,21 +4,15 @@
  */
 package by.den.jh.associations.one2one.ann;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
  * @author mkonda
  */
 @Entity
-@Table(name="ENGINE_ONE2ONE_ANN")
-public class Engine {
+@Table(name="ENGINE_ONE2ONE_ANN_UNI")
+public class EngineUni {
     
     @Id
     @Column(name="ENGINE_ID")
@@ -28,18 +22,6 @@ public class Engine {
     private String make = null;
     
     private String model = null;
-    
-    @OneToOne(mappedBy="car")
-    private Car car = null;
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
     
     public int getId() {
         return id;

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -23,7 +24,7 @@ public class SetTest {
 
     private void init() {
         Configuration config = new Configuration().configure("collections/set/hibernate.cfg.xml");
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 
@@ -32,15 +33,14 @@ public class SetTest {
         
         session.beginTransaction();
         Showroom showroom = new Showroom();
-        showroom.setLocation("East Croydon, Greater London");
-        showroom.setManager("Barry Larry");
+        showroom.setLocation("Minsk, Arena");
+        showroom.setManager("Lao Dzi");
         Set<Car> cars = new HashSet<Car>();
         
-        cars.add(new Car("Toyota", "Racing Green"));
-        cars.add(new Car("Nissan", "White"));
-        cars.add(new Car("BMW", "Black"));
-        cars.add(new Car("Mercedes", "Silver"));
-        cars.add(new Car("Mercedes", "Silver"));
+        cars.add(new Car("Toyota2", "Racing Green"));
+        cars.add(new Car("BMW2", "Black"));
+        cars.add(new Car("DuplicateCar", "None"));
+        cars.add(new Car("DuplicateCar", "None"));
 
         showroom.setCars(cars);
         
@@ -54,10 +54,10 @@ public class SetTest {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
         
-        List list = session.createQuery("from com.madhusudhan .jh.collections.set.Showroom").list();
+        List list = session.createQuery("from by.den.jh.collections.set.Showroom").list();
         
         for (Object object : list) {
-            System.out.println("** List items: "+object);
+            System.out.println("\n\n*********************** List items: "+object);
         }
         session.getTransaction().commit();
         System.out.println("Done");

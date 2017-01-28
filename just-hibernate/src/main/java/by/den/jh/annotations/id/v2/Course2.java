@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  *
  * @author mkonda
  */
-@Entity(name = "COURSE_ANNOTATION_V2")
+@Entity(name = "COURSE_ANNOTATION")
 public class Course2 {
 
     @EmbeddedId

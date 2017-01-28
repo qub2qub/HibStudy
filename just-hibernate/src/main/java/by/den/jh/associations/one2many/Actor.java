@@ -24,6 +24,9 @@ public class Actor {
         setShortName(shortName);
     }
 
+    public Actor() {
+    }
+
     public int getId() {
         return id;
     }

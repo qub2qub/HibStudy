@@ -13,7 +13,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity(name="INHERITANCE_S2_EXECUTIVE_ANN")
 @PrimaryKeyJoinColumn(name="EMPLOYEE_ID")
-
 public class Executive extends Employee{
     private String role = null;
     

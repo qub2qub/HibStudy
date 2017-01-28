@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -22,7 +23,7 @@ public class ListTest {
 
     private void init() {
         Configuration config = new Configuration().configure("collections/bags/hibernate.cfg.xml");
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 
@@ -39,6 +40,7 @@ public class ListTest {
         cars.add(new Car("Toyota", "Racing Green"));
         cars.add(new Car("Nissan", "White"));
         cars.add(new Car("BMW", "Black"));
+        cars.add(new Car("BMW", "Black"));
         cars.add(new Car("Mercedes", "Silver"));
 
         showroom.setCars(cars);
@@ -53,7 +55,7 @@ public class ListTest {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
         
-        List list = session.createQuery("from com.madhusudhan.jh.collections.bags.Showroom").list();
+        List list = session.createQuery("from by.den.jh.collections.bags.Showroom").list();
         
         for (Object object : list) {
             System.out.println("List items: "+object);

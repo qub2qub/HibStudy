@@ -42,4 +42,12 @@ public class Movie {
 	public String getSynopsis() {
 		return synopsis;
 	}
+
+	@Override
+	public String toString() {
+		return "Movie{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				'}';
+	}
 }

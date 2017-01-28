@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -25,7 +26,7 @@ public class AnnotationListTest {
                 .addAnnotatedClass(Showroom.class)
                 .addAnnotatedClass(Car.class);
                 
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 
@@ -34,12 +35,13 @@ public class AnnotationListTest {
         
         session.beginTransaction();
         Showroom showroom = new Showroom();
-        showroom.setLocation("East Croydon, Greater London");
-        showroom.setManager("Barry Larry");
+        showroom.setLocation("UK, London");
+        showroom.setManager("Mr. Bean");
         List<Car> cars = new ArrayList<Car>();
         
         cars.add(new Car("Toyota", "Racing Green"));
         cars.add(new Car("Nissan", "White"));
+        cars.add(new Car("BMW", "Black"));
         cars.add(new Car("BMW", "Black"));
         cars.add(new Car("Mercedes", "Silver"));
 
@@ -55,10 +57,10 @@ public class AnnotationListTest {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
         
-        List list = session.createQuery("from com.madhusudhan.jh.collections.list.ann.Showroom").list();
+        List list = session.createQuery("from by.den.jh.collections.list.ann.Showroom").list();
         
         for (Object object : list) {
-            System.out.println("** List items: "+object);
+            System.out.println("\n\n>>>>>>>>>>>>>>>** List items: "+object);
         }
         session.getTransaction().commit();
         System.out.println("Done");

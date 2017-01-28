@@ -13,6 +13,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Projections;
 import org.hibernate.service.ServiceRegistry;
@@ -29,7 +30,7 @@ public class QueryTest {
     private void init() {
         Configuration config = new Configuration().configure("/hql/hibernate.cfg.xml");
 //        config.addAnnotatedClass(TravelReview.class);
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
 
     }
@@ -39,7 +40,7 @@ public class QueryTest {
         Transaction tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("from com.madhusudhan.jh.hql.TravelReview");
+        Query query = session.createQuery("from by.den.jh.hql.TravelReview");
         List<TravelReview> reviews = query.list();
 
         for (TravelReview travelReview : reviews) {
@@ -55,7 +56,7 @@ public class QueryTest {
         Transaction tx = session.getTransaction();
         tx.begin();
 
-        List<TravelReview> reviews = session.createQuery("from com.madhusudhan.jh.hql.TravelReview").list();
+        List<TravelReview> reviews = session.createQuery("from by.den.jh.hql.TravelReview").list();
 
         System.out.println("Method {getAllTravelReviewsUsingChain} results:");
 
@@ -70,7 +71,7 @@ public class QueryTest {
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("from com.madhusudhan.jh.hql.TravelReview where title='London'");
+        Query query = session.createQuery("from by.den.jh.hql.TravelReview where title='London'");
 
         TravelReview review = (TravelReview) query.uniqueResult();
         System.out.println("Method {getTravelReviewUniqueRecord} results:" + review);
@@ -82,7 +83,7 @@ public class QueryTest {
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("from com.madhusudhan.jh.hql.TravelReview where title=:titleId");
+        Query query = session.createQuery("from by.den.jh.hql.TravelReview where title=:titleId");
         query.setString("titleId", "London");
         TravelReview review = (TravelReview) query.uniqueResult();
         System.out.println("Method {getTravelReviewWithQueryParam} results:" + review);
@@ -97,7 +98,7 @@ public class QueryTest {
         List titleList = new ArrayList();
         titleList.add("London");
         titleList.add("Venice");
-        Query query = session.createQuery("from com.madhusudhan.jh.hql.TravelReview where title in (:titleList)");
+        Query query = session.createQuery("from by.den.jh.hql.TravelReview where title in (:titleList)");
         query.setParameterList("titleList", titleList);;
         List<TravelReview> reviews = query.list();
         System.out.println("Method {getTravelReviewWithQueryParamList} results:" + reviews);
@@ -109,7 +110,7 @@ public class QueryTest {
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("from com.madhusudhan.jh.hql.TravelReview as tr where tr.title=? and tr.id=?");
+        Query query = session.createQuery("from by.den.jh.hql.TravelReview as tr where tr.title=? and tr.id=?");
         query.setString(0, "London");
         query.setInteger(1, 1);
 //        Query query = session.createQuery("from TravelReview where title=:titleId and id=:reviewId");
@@ -122,7 +123,7 @@ public class QueryTest {
     }
 
     private void getTravelReviewWithSelect() {
-        String SELECT_QUERY = "SELECT tr.review from com.madhusudhan.jh.hql.TravelReview as tr";
+        String SELECT_QUERY = "SELECT tr.review from by.den.jh.hql.TravelReview as tr";
 
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
@@ -138,7 +139,7 @@ public class QueryTest {
     }
 
     private void getTravelReviewWithSelectTuples() {
-        String SELECT_QUERY_MULTIPLE_COLUMNS = "SELECT tr.title, tr.review from com.madhusudhan.jh.hql.TravelReview as tr";
+        String SELECT_QUERY_MULTIPLE_COLUMNS = "SELECT tr.title, tr.review from by.den.jh.hql.TravelReview as tr";
 
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
@@ -154,7 +155,7 @@ public class QueryTest {
     }
 
     private void getTravelReviewWithSelectNewObject() {
-        String QUERY = "SELECT new com.madhusudhan.jh.hql.City(tr.title, tr.review ) from com.madhusudhan.jh.hql.TravelReview as tr";
+        String QUERY = "SELECT new by.den.jh.hql.City(tr.title, tr.review ) from by.den.jh.hql.TravelReview as tr";
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
         tx.begin();
@@ -169,7 +170,7 @@ public class QueryTest {
     }
 
     private void getTravelReviewWithFilters() {
-        String SELECT_QUERY_MULTIPLE_COLUMNS = "from com.madhusudhan.jh.hql.TravelReview";
+        String SELECT_QUERY_MULTIPLE_COLUMNS = "from by.den.jh.hql.TravelReview";
 
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
@@ -190,7 +191,7 @@ public class QueryTest {
         Transaction tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("from com.madhusudhan.jh.hql.TravelReview");
+        Query query = session.createQuery("from by.den.jh.hql.TravelReview");
         query.setMaxResults(1);
         query.setFirstResult(2);
         List<TravelReview> reviews = query.list();
@@ -205,7 +206,7 @@ public class QueryTest {
         Transaction tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("from com.madhusudhan.jh.hql.TravelReview where title='" + "London'");
+        Query query = session.createQuery("from by.den.jh.hql.TravelReview where title='" + "London'");
         List<TravelReview> reviews = query.list();
 
         for (TravelReview travelReview : reviews) {
@@ -225,7 +226,7 @@ public class QueryTest {
         List titleList = new ArrayList();
         titleList.add("London");
         titleList.add("Venice");
-        Query query = session.createQuery("from com.madhusudhan.jh.hql.TravelReview");
+        Query query = session.createQuery("from by.den.jh.hql.TravelReview");
         Iterator queryIter = query.list().iterator();
         while (queryIter.hasNext()) {
             TravelReview tr = (TravelReview) queryIter.next();
@@ -243,7 +244,7 @@ public class QueryTest {
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("update com.madhusudhan.jh.hql.TravelReview set review=:review where id=2");
+        Query query = session.createQuery("update by.den.jh.hql.TravelReview set review=:review where id=2");
         query.setParameter("review", "The city with charm. The city you will never forget");
         int success = query.executeUpdate();
         System.out.println("Updated "+success);
@@ -255,7 +256,7 @@ public class QueryTest {
         Session session = factory.getCurrentSession();
         Transaction tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("delete com.madhusudhan.jh.hql.TravelReview where id=6");
+        Query query = session.createQuery("delete by.den.jh.hql.TravelReview where id=6");
         int success = query.executeUpdate();
         System.out.println("delete success "+success);
         tx.commit();

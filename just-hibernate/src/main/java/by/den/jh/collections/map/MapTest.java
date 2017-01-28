@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -23,7 +24,7 @@ public class MapTest {
 
     private void init() {
         Configuration config = new Configuration().configure("collections/map/hibernate.cfg.xml");
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 
@@ -32,14 +33,14 @@ public class MapTest {
 
         session.beginTransaction();
         Showroom showroom = new Showroom();
-        showroom.setLocation("East Croydon, Greater London");
         showroom.setManager("Cherry Flurry");
+        showroom.setLocation("East Croydon, Greater London");
         Map<String, Car> cars = new HashMap<String, Car>();
 
-        cars.put("barry", new Car("Toyota", "Racing Green"));
-        cars.put("larry", new Car("Nissan", "White"));
-        cars.put("harry", new Car("BMW", "Black"));
-        cars.put("fairy", new Car("Mercedes", "Pink"));
+        cars.put("IVAN", new Car("Toyota", "Racing Green"));
+        cars.put("MAX", new Car("Nissan", "White"));
+        cars.put("LAO", new Car("BMW", "Black"));
+        cars.put("DZI", new Car("Mercedes", "Pink"));
 
         showroom.setCars(cars);
 
@@ -53,10 +54,10 @@ public class MapTest {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
-        List list = session.createQuery("from com.madhusudhan.jh.collections.map.Showroom").list();
+        List list = session.createQuery("from by.den.jh.collections.map.Showroom").list();
 
         for (Object object : list) {
-            System.out.println("Map items: " + object);
+            System.out.println("\n\nMap items: " + object);
         }
         session.getTransaction().commit();
         System.out.println("Done");

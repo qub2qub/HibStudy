@@ -20,8 +20,8 @@ import javax.persistence.NamedQuery;
 @Entity(name = "TRAVEL_REVIEW")
 @NamedQueries(
      value = {
-    @NamedQuery(name = "GET_TRAVEL_REVIEWS", query = "from com.madhusudhan.jh.hql.TravelReview"),
-    @NamedQuery(name = "GET_TRAVEL_REVIEWS_FOR_TITLE", query = "from com.madhusudhan.jh.hql.TravelReview where id=:title")})
+    @NamedQuery(name = "GET_TRAVEL_REVIEWS", query = "from by.den.jh.hql.TravelReview"),
+    @NamedQuery(name = "GET_TRAVEL_REVIEWS_FOR_TITLE", query = "from by.den.jh.hql.TravelReview where id=:title")})
 public class TravelReview implements Serializable {
 
     @Id

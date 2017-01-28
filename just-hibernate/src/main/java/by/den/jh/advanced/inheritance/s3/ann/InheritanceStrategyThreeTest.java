@@ -6,6 +6,7 @@ package by.den.jh.advanced.inheritance.s3.ann;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -19,8 +20,11 @@ public class InheritanceStrategyThreeTest {
     private SessionFactory factory = null;
 
     private void init() {
-        Configuration config = new Configuration().configure("advanced/inheritance/s3/hibernate.cfg.xml");
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        Configuration config = new Configuration()
+                .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(Executive.class)
+                .configure("advanced/inheritance/s3/hibernate.cfg.ann.xml");
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 

@@ -18,6 +18,10 @@ public class Course {
     public Course(String title){
         setTitle(title);
     }
+
+    public Course() {
+    }
+
     public int getId() {
         return id;
     }

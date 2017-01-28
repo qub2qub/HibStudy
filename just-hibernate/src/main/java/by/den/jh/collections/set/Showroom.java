@@ -51,7 +51,7 @@ public class Showroom {
 
     @Override
     public String toString() {
-        return "Showroom{" + "id=" + id + ", manager=" + manager + ", location=" + location + ", cars=" + cars + '}';
+        return "\n\nShowroom{" + "id=" + id + ", manager=" + manager + ", location=" + location + ", \ncars=\n" + cars + '}';
     }
     
 }

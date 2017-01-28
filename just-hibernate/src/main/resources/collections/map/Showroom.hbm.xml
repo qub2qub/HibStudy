@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.madhusudhan.jh.collections.map">
+<hibernate-mapping package="by.den.jh.collections.map">
+
     <class name="by.den.jh.collections.map.Showroom" table="SHOWROOM_MAP_XX">
         <id column="SHOWROOM_ID" name="id">
             <generator class="native"/>
@@ -14,6 +15,7 @@
             <one-to-many class="by.den.jh.collections.map.Car"/>
         </map>
     </class>
+
     <class name="by.den.jh.collections.map.Car" table="CARS_MAP">
         <id column="CAR_ID" name="id">
             <generator class="native"/>
@@ -21,4 +23,5 @@
         <property name="name" column="CAR_NAME" />
         <property name="color" column="COLOR" />
     </class>
+
 </hibernate-mapping>

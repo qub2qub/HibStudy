@@ -8,6 +8,7 @@ import java.util.List;
 import org.hibernate.Filter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -22,7 +23,7 @@ public class FilterTest {
 
     private void init() {
         Configuration config = new Configuration().configure("advanced/hibernate.cfg.filters.xml");
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 
@@ -31,7 +32,7 @@ public class FilterTest {
         session.beginTransaction();
 
         Filter filter = session.enableFilter("filterByBMWMake");
-        filter.setParameter("make", new String("BMW"));
+        filter.setParameter("makeQ", new String("Toy"));
 
         List results = session.createQuery("from Car").list();
         System.out.println("Results " + results);
@@ -50,7 +51,7 @@ public class FilterTest {
         for (int i = 0; i < 10; i++) {
             car = new Car();
 //            car.setId(i);
-            car.setName("BMW Green Car");
+            car.setName("BMW Green Car11Ann");
             car.setModel("X" + i);
             car.setMake("BMW");
             session.save(car);

@@ -47,6 +47,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" + "id=" + id + ", name=" + name + ", color=" + color + '}';
+        return "Car11Ann{" + "id=" + id + ", name=" + name + ", color=" + color + '}';
     }
 }

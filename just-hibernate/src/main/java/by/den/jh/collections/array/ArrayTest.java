@@ -7,6 +7,7 @@ package by.den.jh.collections.array;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -21,7 +22,7 @@ public class ArrayTest {
 
     private void init() {
         Configuration config = new Configuration().configure("collections/array/hibernate.cfg.xml");
-        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
         factory = config.buildSessionFactory(registry);
     }
 
@@ -46,7 +47,7 @@ public class ArrayTest {
         Session session = factory.getCurrentSession();
         session.beginTransaction();
         
-        List list = session.createQuery("from com.madhusudhan.jh.collections.array.Showroom").list();
+        List list = session.createQuery("from by.den.jh.collections.array.Showroom").list();
         
         for (Object object : list) {
             System.out.println("List items: "+object);

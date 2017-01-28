@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.madhusudhan.jh.associations.one2many.bi">
-  <class name="by.den.jh.associations.one2many.bi.Actor" table="ACTOR_ONE2MANY_BI">
+<hibernate-mapping package="by.den.jh.associations.one2many.bi">
+
+  <class name="by.den.jh.associations.one2many.bi.Actor" table="ACTOR_ONE2MANY_BI2">
     <id  name="id" column="ACTOR_ID">
       <generator class="assigned"/>
     </id>
+    <!-- имя колнки здесь приоритетнее, т.е. у актёра  inverse="true"  -- то он главный.
+    и будет на 1 запрос меньше в БД.
+    имя колонки здесь  должно быть одинаковым с колокой во 2м мапинге
+     ЕСЛИ на 2м конце будет другое имя колонки, то
+    в этой таблице будут созданы 2 колонки FK к ид фильма, по сути идентичные, но с разными именами
+    но заполняться будет только 1 колонка, 2я будет пустая и ненужная -->
     <many-to-one name="movie" column="MOVIE_ID" class="by.den.jh.associations.one2many.bi.Movie"/>
-        
+
+
     <property name="firstName" column="FIRST_NAME" />
     <property name="lastName" column="LAST_NAME"/>
     <property name="shortName" column="SHORT_NAME"/>

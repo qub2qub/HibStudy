@@ -13,7 +13,7 @@ import javax.persistence.IdClass;
  * @author mkonda
  */
 @IdClass(value = CoursePK3.class)
-@Entity(name = "COURSE_ANNOTATION_V3")
+@Entity(name = "COURSE_ANNOTATION")
 public class Course3 {
 
     @Id

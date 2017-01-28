@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.madhusudhan.jh.associations.one2many">
+<hibernate-mapping package="by.den.jh.associations.one2many">
   <class name="by.den.jh.associations.one2many.Actor" table="ACTOR_ONE2MANY">
     <id  name="id" column="ACTOR_ID">
       <generator class="assigned"/>
